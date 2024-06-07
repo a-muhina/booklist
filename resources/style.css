@@ -1,0 +1,155 @@
+/*General*/
+html, body {
+    font-family: Inter, sans-serif;
+    background-color: #B4ACA1;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.base {
+    background-color: #EBE7E1;
+    width: 1532px;
+    height: 820px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.left, .right {
+    margin: 10px;
+}
+img {
+    width: 357px;
+    align-self: center;
+    margin-top: 20px;
+
+}
+
+/*Text*/
+h1 {
+    font-size: 35px;
+    font-weight: 400;
+    color: #272A83;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 25px;
+    color: #272A83;
+}
+
+/*Form*/
+.left {
+    height: 675px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pair {
+    margin: 20px 0;
+}
+
+label {
+    padding-left: 16px;
+}
+
+.field {
+    width: 443px;
+    height: 50px;
+    border-radius: 25px;
+    border: 0px;
+}
+
+.field.search {
+    height: 30px;
+}
+
+#submit {
+    float: right;
+    width: 171px;
+    height: 50px;
+    font-size: 25px;
+    color: #F5F5F5;
+    background-color: #272A83;
+    border: 0;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/*Table*/
+.right {
+    width: 881px;
+    height: 675px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.s {
+    margin-bottom: 20px;
+}
+
+.search {
+    width: 249px;
+    float: right;
+    padding-right: 50px;
+}
+
+#submitsearch{
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.fi-br-search{
+    position: relative; 
+    display: inline-block; 
+    float: right;
+    margin-right: -290px;
+    padding-top: 9px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    width: 100%;
+    background-color: #272A83;
+}
+
+td:first-child {
+    border-top-left-radius: 25px;
+}
+
+td:last-child {
+    border-top-right-radius: 25px;
+}
+
+td {
+    height: 50px;
+    border: none;
+    color: #F5F5F5;
+    padding-left: 10px;
+}
