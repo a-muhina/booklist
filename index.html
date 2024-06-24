@@ -30,7 +30,7 @@
                         <div class="pair">  
                             <label for="isbn">ISBN</label>
                             <br>
-                            <input type="text" name="isbn" id="isbn" class="field">
+                            <input type="text" name="isbn" id="isbn" class="field" required>
                             <br>
                         </div>
                         <input type="submit" id="submit" value="Add">
@@ -48,13 +48,17 @@
                                 <td>Book name</td>
                                 <td>Author</td>
                                 <td>ISBN</td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody id="booklist">
-                            <tr>
-                                <td>The Witcher</td>
-                                <td>Andrzej Sapkowski</td>
-                                <td>978-0-575-08749-1</td>
+                            <tr id="toremove">
+                                <td class="text">The Witcher</td>
+                                <td class="text">Andrzej Sapkowski</td>
+                                <td class="text">978-0-575-08749-1</td>
+                                <td class="button"><button type="button" class="delete"></button></td>
+                                <td class="button"><button type="button" class="edit"></button></td>
                             </tr>
                         </tbody>
                     </table>
