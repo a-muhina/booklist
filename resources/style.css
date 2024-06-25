@@ -76,10 +76,6 @@ label {
     padding: 10px 20px;
 }
 
-.field.search {
-    height: 30px;
-}
-
 #submit {
     float: right;
     width: 100px;
@@ -99,36 +95,35 @@ label {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-end;
 }
 
 .s {
     margin-bottom: 20px;
+    width: 500px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
 }
 
 .search {
-    width: 249px;
-    float: right;
+    width: 100%;
+    height: 30px;
     padding-right: 50px;
+    border: none;
 }
 
 #submitsearch{
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    opacity: 0;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin: 12px;
     cursor: pointer;
-    z-index: 1;
-}
-
-.fi-br-search{
-    position: relative; 
-    display: inline-block; 
-    float: right;
-    margin-right: -290px;
-    padding-top: 17px;
-    cursor: pointer;
+    border: none;
+    background-image: url('icons/search.png');
+    background-color:rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 table {
@@ -150,18 +145,37 @@ thead td:last-child {
 }
 
 thead td {
+    color: #F5F5F5;
+    height: 50px;
+}
+
+td {
+    max-width: 600px;
     height: 50px;
     border: none;
-    color: #F5F5F5;
     padding-left: 20px;
 }
 
+#booklist {
+    width: 100%;
+}
+
 #booklist td.text{
-    background-color: #F5F5F5;
-    height: 50px;
     border: none;
     padding-left: 20px;
+}
 
+#booklist tr {
+    width: 100%;
+    background-color: #F5F5F5;
+    height: 50px;
+    padding: 10px;
+}
+
+input.editing {
+    border-radius: 25px;
+    border: 0px;
+    padding: 10px 20px;
 }
 
 td.button {
@@ -173,7 +187,7 @@ td.button {
     padding: 0 10px;
 }
 
-.button .delete, .button .edit{
+.button .delete, .button .edit, .button .confirm{
     position: relative;
     width: 20px;
     height: 20px;
@@ -190,6 +204,10 @@ td.button {
 
 .button .edit {
     background-image: url('icons/pencil.png');
+}
+
+.button .confirm {
+    background-image: url('icons/check.png');
 }
 
 

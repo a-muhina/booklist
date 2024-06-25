@@ -18,13 +18,13 @@
                         <div class="pair">
                             <label for="title">Title</label>
                             <br>
-                            <input type="text" name="title" id="title" class="field">
+                            <input type="text" name="title" id="title" class="field" required>
                             <br>
                         </div>
                         <div class="pair">
                             <label for="author">Author</label>
                             <br>
-                            <input type="text" name="author" id="author" class="field">
+                            <input type="text" name="author" id="author" class="field" required>
                             <br>
                         </div>
                         <div class="pair">  
@@ -39,8 +39,9 @@
                 </div>
                 <div class="right">
                     <div class="s">
-                        <input type="text" name="search" id="search" class="field search">
-                        <i class="fi fi-br-search"><input type="submit" id="submitsearch" value="search"></i>
+                        <input type="submit" id="submitsearch" value="">
+                        <input type="text" name="search" id="search" class="field search">  
+                        
                     </div>
                     <table>
                         <thead>
@@ -53,13 +54,13 @@
                             </tr>
                         </thead>
                         <tbody id="booklist">
-                            <tr id="toremove">
+                            <!--<tr id="toremove">
                                 <td class="text">The Witcher</td>
                                 <td class="text">Andrzej Sapkowski</td>
                                 <td class="text">978-0-575-08749-1</td>
                                 <td class="button"><button type="button" class="delete"></button></td>
                                 <td class="button"><button type="button" class="edit"></button></td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>
