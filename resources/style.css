@@ -126,6 +126,11 @@ label {
     background-size: contain;
 }
 
+.wrap {
+    width: 100%;
+    overflow-y: scroll;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
