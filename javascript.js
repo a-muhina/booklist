@@ -1,8 +1,4 @@
 const submit = document.getElementById('submit');
-
-const search = document.getElementById('search');
-const submitsearch = document.getElementById('submitsearch');
-
 const booklist = document.getElementById('booklist');
 
 let books = JSON.parse(localStorage.getItem('books')) || [];
@@ -181,4 +177,24 @@ let entry = event => {
 
 submit.onclick = entry;
 
+/*Search*/
+const search = document.getElementById('search');
+const submitsearch = document.getElementById('submitsearch');
+
+submitsearch.onclick = () => {
+    let keyword = search.value;
+    let allBooks = document.querySelectorAll('tr.book');
+    allBooks.forEach(book => booklist.removeChild(book));
+    
+    let result = books.filter(book => {
+        let title = book.title;
+        let author = book.author;
+        let isbn = book.isbn;
+        if (title.includes(keyword) || author.includes(keyword) || isbn.includes(keyword)) {
+            addBookToList(book);
+        }
+    });
+    
+    
+}
 
