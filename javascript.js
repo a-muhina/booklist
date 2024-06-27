@@ -44,6 +44,7 @@ let deletion = (newBook, book) => {
 
     let deleteButton = document.createElement('button');
     deleteButton.classList.add('delete');
+    deleteButton.title = 'Delete';
 
     deleteTD.appendChild(deleteButton);
     newBook.appendChild(deleteTD);
@@ -62,9 +63,6 @@ let editing = (newBook, book) => {
 
     let editButton = document.createElement('button');
     editButton.classList.add('edit');
-
-    let confirmButton = document.createElement('button'); 
-    confirmButton.classList.add('confirm');
 
     editTD.appendChild(editButton);
     newBook.appendChild(editTD);
@@ -102,6 +100,7 @@ let editing = (newBook, book) => {
             
             editButton.classList.remove('confirm');
             editButton.classList.add('edit');
+            editButton.title = 'Edit';
 
         } else {
             textFields.forEach(field => {
@@ -117,6 +116,7 @@ let editing = (newBook, book) => {
             });
             editButton.classList.remove('edit');
             editButton.classList.add('confirm');
+            editButton.title = 'Confirm';
         }
     }
 }
@@ -181,20 +181,66 @@ submit.onclick = entry;
 const search = document.getElementById('search');
 const submitsearch = document.getElementById('submitsearch');
 
+
 submitsearch.onclick = () => {
-    let keyword = search.value;
-    let allBooks = document.querySelectorAll('tr.book');
-    allBooks.forEach(book => booklist.removeChild(book));
+    let keyword = search.value.toLowerCase();
+    const non = document.getElementById('none');
+
+    if(keyword !== ''){
+        let allBooks = document.querySelectorAll('tr.book');
+        allBooks.forEach(book => booklist.removeChild(book));
+        const cancelButton = document.getElementById('cancel');
+
+        if (!cancelButton){
+            const cancel = document.createElement('input');
+            cancel.id = 'cancel';
+            cancel.type = 'submit';
+            cancel.value = '';
+            cancel.title = 'Cancel search';
+            const wrapperS = submitsearch.parentNode;
+            wrapperS.prepend(cancel);
     
-    let result = books.filter(book => {
-        let title = book.title;
-        let author = book.author;
-        let isbn = book.isbn;
-        if (title.includes(keyword) || author.includes(keyword) || isbn.includes(keyword)) {
-            addBookToList(book);
+            cancel.onclick = () => {
+                window.location.reload();
+                if(non){
+                    booklist.removeChild(non);
+                }  
+            }
         }
-    });
-    
-    
+        
+        let result = books.filter(book => {
+            let title = book.title.toLowerCase();
+            let author = book.author.toLowerCase();
+            let isbn = book.isbn.toLowerCase();
+            if (title.includes(keyword) || author.includes(keyword) || isbn.includes(keyword)) {
+                return book;
+            }
+        });
+
+        if (result.length > 0) {
+            result.forEach(book => addBookToList(book));
+            
+            if(non){
+                booklist.removeChild(non);
+            }
+        } else {
+            if(!non){
+                const none = document.createElement('tr');
+                none.id = 'none';
+                        
+                const noResult = document.createElement('td');
+                noResult.classList.add('noresult');
+                noResult.colSpan = '5';
+                noResult.innerHTML = 'No results were found.';
+
+                none.appendChild(noResult);
+                booklist.appendChild(none);
+            }
+        }
+    }
+        
 }
+    
+    
+
 

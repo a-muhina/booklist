@@ -33,14 +33,15 @@
                             <input type="text" name="isbn" id="isbn" class="field" required maxlength="13">
                             <br>
                         </div>
-                        <input type="submit" id="submit" value="Add">
+                        <input type="submit" id="submit" value="Add" title="Add">
                     </form>
                     <img src="resources\book asset.svg" alt="book">
                 </div>
                 <div class="right">
                     <div class="s">
-                        <input type="submit" id="submitsearch" value="">
-                        <input type="text" name="search" id="search" class="field search">  
+                        <!--<button id="cancel"></button>-->
+                        <input type="submit" id="submitsearch" value="" title="Search" >
+                        <input type="text" name="search" id="search" class="field search" placeholder="Search">  
                         
                     </div>
                     <div class="wrap">
@@ -55,6 +56,9 @@
                                 </tr>
                             </thead>
                             <tbody id="booklist">
+                                <!--<tr class="none">
+                                    <td class="noresult" colspan="5">No results were found.</td>
+                                </tr>-->
                                 <!--<tr id="toremove">
                                     <td class="text">The Witcher</td>
                                     <td class="text">Andrzej Sapkowski</td>

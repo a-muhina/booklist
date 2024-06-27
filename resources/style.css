@@ -39,19 +39,6 @@ img {
 
 }
 
-/*Text*/
-h1 {
-    font-size: 35px;
-    font-weight: 400;
-    color: #272A83;
-    margin: 0 auto;
-}
-
-label {
-    font-size: 20px;
-    color: #272A83;
-}
-
 /*Form*/
 .left {
     height: 675px;
@@ -61,10 +48,19 @@ label {
 }
 
 .pair {
-    margin: 20px 0;
+    margin: 25px 0;
+}
+
+h1 {
+    font-size: 35px;
+    font-weight: 400;
+    color: #272A83;
+    margin: 0 auto;
 }
 
 label {
+    font-size: 19px;
+    color: #272A83;
     padding-left: 16px;
 }
 
@@ -74,21 +70,10 @@ label {
     border-radius: 25px;
     border: 0px;
     padding: 10px 20px;
+    margin-top: 5px;
 }
 
-#submit {
-    float: right;
-    width: 100px;
-    height: 50px;
-    font-size: 20px;
-    color: #F5F5F5;
-    background-color: #272A83;
-    border: 0;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-/*Table*/
+/*Search and Table*/
 .right {
     width: 881px;
     height: 675px;
@@ -102,33 +87,18 @@ label {
     margin-bottom: 20px;
     width: 500px;
     display: flex;
-    justify-content: flex-end;
-    gap: 5px;
+    justify-content: right;
 }
 
 .search {
-    width: 100%;
-    height: 30px;
     padding-right: 50px;
     border: none;
-}
-
-#submitsearch{
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    margin: 12px;
-    cursor: pointer;
-    border: none;
-    background-image: url('icons/search.png');
-    background-color:rgba(0, 0, 0, 0);
-    background-repeat: no-repeat;
-    background-size: contain;
+    margin: 0;
 }
 
 .wrap {
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 table {
@@ -151,7 +121,7 @@ thead td:last-child {
 
 thead td {
     color: #F5F5F5;
-    height: 50px;
+    
 }
 
 td {
@@ -159,6 +129,7 @@ td {
     height: 50px;
     border: none;
     padding-left: 20px;
+    font-size: 16px;
 }
 
 #booklist {
@@ -167,7 +138,6 @@ td {
 
 #booklist td.text{
     border: none;
-    padding-left: 20px;
 }
 
 #booklist tr {
@@ -181,6 +151,50 @@ input.editing {
     border-radius: 25px;
     border: 0px;
     padding: 10px 20px;
+}
+
+tr td.noresult {
+    background-color:#EBE7E1;
+    text-align: center;
+}
+
+/*Buttons*/
+#submit {
+    float: right;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    color: #F5F5F5;
+    background-color: #272A83;
+    border: 0;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#submitsearch, #cancel{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin: 12px;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background-color:rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#submitsearch {
+    background-image: url('icons/search.png');
+}
+
+#cancel {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    box-sizing: content-box;
+    margin: 20px;
+    background-image: url('icons/cancel.png');
 }
 
 td.button {
