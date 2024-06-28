@@ -1,4 +1,3 @@
-const submit = document.getElementById('submit');
 const booklist = document.getElementById('booklist');
 
 let books = JSON.parse(localStorage.getItem('books')) || [];
@@ -152,31 +151,32 @@ books.forEach(book => addBookToList(book));
 
 
 /*Adding an entry*/
+const submit = document.getElementById('submit');
 let entry = event => {
-    event.preventDefault();
-    const remove = document.getElementById('toremove');
-    if (remove) {
-        booklist.removeChild(remove);
-    }
-
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const isbn = document.getElementById('isbn').value;
 
-    let book = new Book(title, author, isbn);
+    if (title !== '' && author !== '' && isbn !== '') {
+        event.preventDefault();
 
-    books.push(book);
+        let book = new Book(title, author, isbn);
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
+        addBookToList(book);
 
-    localStorage.setItem('books', JSON.stringify(books));
-
-    addBookToList(book);
-
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    document.getElementById('isbn').value = '';
+        document.getElementById('title').value = '';
+        document.getElementById('author').value = '';
+        document.getElementById('isbn').value = '';
+    }
 }
 
 submit.onclick = entry;
+submit.addEventListener(keydown, event => {
+    if (event.key === 'Enter') {
+        entry(event);
+    }
+} )
 
 /*Search*/
 const search = document.getElementById('search');

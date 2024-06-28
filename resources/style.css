@@ -294,6 +294,9 @@ td.button {
 }
 
 @media only screen and (min-width: 100px) and (max-width: 600px) {
+    main {
+        height: auto;
+    }
     h1 {
         font-size: 25px;
     }
@@ -313,10 +316,14 @@ td.button {
         height: 100%;
     }
 
-    .field, .pair {
+    .field, .pair, input {
         width: 90%;
         padding: 5px 5%;
         margin: 10px 0;
+    }
+
+    input.editing {
+        padding: 5px;
     }
 
     #submit {
