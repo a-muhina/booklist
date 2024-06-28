@@ -18,7 +18,7 @@ main {
 
 .base {
     background-color: #EBE7E1;
-    width: 1532px;
+    width: 95%;
     height: 820px;
     border-radius: 25px;
     display: flex;
@@ -236,8 +236,13 @@ td.button {
 }
 
 /*Responsiveness*/
+@media only screen and (min-width: 1500px) {
+    .base {
+        width: 1535px;
+    }
+}
 
-@media only screen and (min-width: 600px) and (max-width: 1540px) {
+@media only screen and (min-width: 600px) and (max-width: 1100px) {
     main {
         height: auto;
     }
@@ -288,7 +293,7 @@ td.button {
     }
 }
 
-@media only screen and (min-width: 300px) and (max-width: 600px) {
+@media only screen and (min-width: 100px) and (max-width: 600px) {
     h1 {
         font-size: 25px;
     }
@@ -341,15 +346,27 @@ td.button {
 
     .wrap {
         width: 100%;
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     table { 
         width: 90%;
+        overflow: auto;
     }
 
     #booklist tr {
         border: 2px solid rgba(39, 42, 131, 0.3)
     }
+
+    #submitsearch, #cancel{
+        width: 20px;
+        height: 25px;
+        margin: 18px;
+    }
 }
 
+@media only screen and (max-width: 490px){
+    .wrap {
+        justify-content: flex-start;
+    }
+}
