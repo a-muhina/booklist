@@ -229,4 +229,45 @@ td.button {
     background-image: url('icons/check.png');
 }
 
+/*Responsiveness*/
 
+@media only screen and (min-width: 600px) and (max-width: 1540px) {
+    main {
+        height: auto;
+    }
+
+    .base {
+        flex-direction: column;
+        height: 100%;   
+    }
+
+    .left {
+        height: 100%;
+    }
+
+    img {
+        display: none;
+
+    }
+
+    .right {
+        width: 100%;
+        height: 100%;
+        margin: 25px;
+    }
+
+    .s {
+        width: 100%;
+        
+    }
+
+    #search {
+        width: 100%;
+    }
+
+    table { 
+        
+    }
+
+
+}

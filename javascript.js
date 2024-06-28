@@ -63,6 +63,7 @@ let editing = (newBook, book) => {
 
     let editButton = document.createElement('button');
     editButton.classList.add('edit');
+    editButton.title = 'Edit';
 
     editTD.appendChild(editButton);
     newBook.appendChild(editTD);
