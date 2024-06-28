@@ -365,7 +365,7 @@ td.button {
     }
 }
 
-@media only screen and (max-width: 490px){
+@media only screen and (max-width: 450px){
     .wrap {
         justify-content: flex-start;
     }
