@@ -14,21 +14,24 @@
                     <h1>Add a book</h1>
                     <form>
                         <div class="pair">
-                            <label for="title">Title</label>
+                            <label for="title">Title</label> <div id="title-message" class="info"></div> 
+                            <div id="title-pop" class="popup">The title needs to be between 1 and 255 characters long.</div>
                             <br>
-                            <input type="text" name="title" id="title" class="field" required>
+                            <input type="text" name="title" id="title" class="field" required maxlength="255">
                             <br>
                         </div>
                         <div class="pair">
-                            <label for="author">Author</label>
+                            <label for="author">Author</label> <div id="author-message" class="info"></div>
+                            <div id="author-pop" class="popup">The author's name needs to be between 1 and 255 characters long.</div>
                             <br>
-                            <input type="text" name="author" id="author" class="field" required>
+                            <input type="text" name="author" id="author" class="field" required maxlength="255">
                             <br>
                         </div>
                         <div class="pair">  
-                            <label for="isbn">ISBN</label>
+                            <label for="isbn">ISBN</label> <div id="isbn-message" class="info"></div>
+                            <div id="isbn-pop" class="popup">The ISBN is intended to be unique. It also needs to be 10 or 13 characters long.</div>
                             <br>
-                            <input type="text" name="isbn" id="isbn" class="field" required maxlength="13">
+                            <input type="text" name="isbn" id="isbn" class="field" required pattern="/\d{10}|\d{13}/" minlength="10" maxlength="13">
                             <br>
                         </div>
                         <input type="submit" id="submit" value="Add" title="Add">

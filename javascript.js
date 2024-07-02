@@ -36,6 +36,29 @@ class Book {
 
 books = books.map(book => new Book(book._title, book._author, book._isbn));
 
+/*Info*/
+const titleInfo = document.getElementById('title-message');
+const authorInfo = document.getElementById('author-message');
+const isbnInfo = document.getElementById('isbn-message');
+const titlePop = document.getElementById('title-pop');
+const authorPop = document.getElementById('author-pop');
+const isbnPop = document.getElementById('isbn-pop');
+
+let visible = (f) => {
+    f.style.visibility = 'visible';
+}
+
+let invisible = (f) => {
+    f.style.visibility = 'hidden';
+}
+
+titleInfo.onmouseover = () => visible(titlePop);
+titleInfo.onmouseleave = () => invisible(titlePop);
+authorInfo.onmouseover = () => visible(authorPop);
+authorInfo.onmouseleave = () => invisible(authorPop);
+isbnInfo.onmouseover = () => visible(isbnPop);
+isbnInfo.onmouseleave = () => invisible(isbnPop);
+
 /*Deletion*/
 let deletion = (newBook, book) => {
     let deleteTD = document.createElement('td');
@@ -75,7 +98,6 @@ let editing = (newBook, book) => {
 
         if (isEditing) {
             let index = books.findIndex(i => i.isbn === book.isbn);
-            console.log(index);
             editFields.forEach((field, idx) => {
                     const input = field.value;
                     field.replaceWith(input);
@@ -152,27 +174,33 @@ books.forEach(book => addBookToList(book));
 
 /*Adding an entry*/
 const submit = document.getElementById('submit');
+const isbnRegEx = /\d{10}|\d{13}/;
+
+const validateISBN = isbn => isbnRegEx.test(isbn) && !books.some(book => book.isbn === isbn);
+
 let entry = event => {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const isbn = document.getElementById('isbn').value;
-
-    if (title !== '' && author !== '' && isbn !== '') {
-        event.preventDefault();
-
-        let book = new Book(title, author, isbn);
-        books.push(book);
-        localStorage.setItem('books', JSON.stringify(books));
-        addBookToList(book);
-
-        document.getElementById('title').value = '';
-        document.getElementById('author').value = '';
-        document.getElementById('isbn').value = '';
+    
+    if (title !== '' && author !== '' && isbn !== '' && title.length < 255 && author.length < 255) {
+            if(validateISBN(isbn)) {
+                event.preventDefault();
+    
+                let book = new Book(title, author, isbn);
+                books.push(book);
+                localStorage.setItem('books', JSON.stringify(books));
+                addBookToList(book);
+            
+                document.getElementById('title').value = '';
+                document.getElementById('author').value = '';
+                document.getElementById('isbn').value = '';
+            }
     }
 }
 
 submit.onclick = entry;
-submit.addEventListener(keydown, event => {
+submit.addEventListener("keydown", event => {
     if (event.key === 'Enter') {
         entry(event);
     }
@@ -180,12 +208,12 @@ submit.addEventListener(keydown, event => {
 
 /*Search*/
 const search = document.getElementById('search');
-const submitsearch = document.getElementById('submitsearch');
+const submitSearch = document.getElementById('submitsearch');
 
 
-submitsearch.onclick = () => {
+let aSearch = event => {
     let keyword = search.value.toLowerCase();
-    const non = document.getElementById('none');
+    const nonе = document.getElementById('none');
 
     if(keyword !== ''){
         let allBooks = document.querySelectorAll('tr.book');
@@ -198,13 +226,13 @@ submitsearch.onclick = () => {
             cancel.type = 'submit';
             cancel.value = '';
             cancel.title = 'Cancel search';
-            const wrapperS = submitsearch.parentNode;
+            const wrapperS = submitSearch.parentNode;
             wrapperS.prepend(cancel);
     
             cancel.onclick = () => {
                 window.location.reload();
-                if(non){
-                    booklist.removeChild(non);
+                if(nonе){
+                    booklist.removeChild(nonе);
                 }  
             }
         }
@@ -221,11 +249,11 @@ submitsearch.onclick = () => {
         if (result.length > 0) {
             result.forEach(book => addBookToList(book));
             
-            if(non){
-                booklist.removeChild(non);
+            if(nonе){
+                booklist.removeChild(nonе);
             }
         } else {
-            if(!non){
+            if(!nonе){
                 const none = document.createElement('tr');
                 none.id = 'none';
                         
@@ -239,8 +267,14 @@ submitsearch.onclick = () => {
             }
         }
     }
-        
 }
+
+submitSearch.onclick = aSearch;
+search.addEventListener("keydown", event => {
+    if (event.key === 'Enter') {
+       aSearch(event);
+    }
+} )
     
     
 

@@ -64,7 +64,7 @@ label {
 }
 
 .field, input {
-    width: 423px;
+    width: 80%;
     height: 30px;
     border-radius: 25px;
     border: 0px;
@@ -76,6 +76,26 @@ label {
 .field::placeholder {
     font-size: 16px;
     font-style: italic;
+}
+
+.info {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
+    background-image: url('icons/info.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.popup {
+    position: absolute;
+    display: inline;
+    padding: 10px;
+    background-color: #F5F5F5;
+    border: 2px solid #272A83;
+    border-radius: 20px;
+    visibility: hidden;
 }
 
 /*Search and Table*/
