@@ -174,28 +174,27 @@ books.forEach(book => addBookToList(book));
 
 /*Adding an entry*/
 const submit = document.getElementById('submit');
-const isbnRegEx = /\d{10}|\d{13}/;
+const isbnRegEx = /^\d{10}(\d{3})?$/;
 
 const validateISBN = isbn => isbnRegEx.test(isbn) && !books.some(book => book.isbn === isbn);
+
 
 let entry = event => {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const isbn = document.getElementById('isbn').value;
     
-    if (title !== '' && author !== '' && isbn !== '' && title.length < 255 && author.length < 255) {
-            if(validateISBN(isbn)) {
-                event.preventDefault();
+    if (title !== '' && author !== '' && isbn !== '' && title.length < 255 && author.length < 255 && validateISBN(isbn)) {
+            event.preventDefault();
     
-                let book = new Book(title, author, isbn);
-                books.push(book);
-                localStorage.setItem('books', JSON.stringify(books));
-                addBookToList(book);
+            let book = new Book(title, author, isbn);
+            books.push(book);
+            localStorage.setItem('books', JSON.stringify(books));
+            addBookToList(book);
             
-                document.getElementById('title').value = '';
-                document.getElementById('author').value = '';
-                document.getElementById('isbn').value = '';
-            }
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '';
+            document.getElementById('isbn').value = '';
     }
 }
 
