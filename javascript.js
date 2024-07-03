@@ -79,6 +79,9 @@ let deletion = (newBook, book) => {
 }
 
 /*Editing*/
+const isbnRegEx = /^\d{10}(\d{3})?$/;
+const validateISBN = (isbn, ogISBN = null) => (ogISBN && isbn === ogISBN) || (isbnRegEx.test(isbn) && !books.some(book => book.isbn === isbn));
+
 let editing = (newBook, book) => {
     let editTD = document.createElement('td');
     editTD.classList.add('button');
@@ -95,35 +98,44 @@ let editing = (newBook, book) => {
         let textFields = row.querySelectorAll('td.text');
         let editFields = row.querySelectorAll('input.editing');
         let isEditing = editButton.classList.contains('confirm');
+        
 
         if (isEditing) {
             let index = books.findIndex(i => i.isbn === book.isbn);
+            let valid = true;
+
             editFields.forEach((field, idx) => {
                     const input = field.value;
-                    field.replaceWith(input);
-                    
-                    switch (idx) {
-                        case 0:
-                            books[index].title = input;
-                            localStorage.setItem('books', JSON.stringify(books));
-                            break;
-                        case 1:
-                            books[index].author = input;
-                            localStorage.setItem('books', JSON.stringify(books));
-                            break;
-                        case 2: 
-                            books[index].isbn = input;
-                            localStorage.setItem('books', JSON.stringify(books));
-                            break;
-                    }     
+                    if (input === '' || input.length > 255 || (idx === 2 && !validateISBN(input, book.isbn))) {
+                        valid = false;
+                        field.classList.add('invalid');
+                    } else {
+                        field.classList.remove('invalid');
+                    }
             });
 
-            localStorage.setItem('books', JSON.stringify(books));
-            
-            editButton.classList.remove('confirm');
-            editButton.classList.add('edit');
-            editButton.title = 'Edit';
+            if (valid) {
+                editFields.forEach((field,idx) => {
+                    const input = field.value;
+                    field.replaceWith(input);
+                        switch (idx) {
+                            case 0:
+                                books[index].title = input;
+                                break;
+                            case 1:
+                                books[index].author = input;
+                                break;
+                            case 2: 
+                                books[index].isbn = input;
+                                break;
+                        }    
+                })
+                localStorage.setItem('books', JSON.stringify(books));
 
+                editButton.classList.remove('confirm');
+                editButton.classList.add('edit');
+                editButton.title = 'Edit';
+            }
         } else {
             textFields.forEach(field => {
                 const text = field.innerHTML;
@@ -174,19 +186,15 @@ books.forEach(book => addBookToList(book));
 
 /*Adding an entry*/
 const submit = document.getElementById('submit');
-const isbnRegEx = /^\d{10}(\d{3})?$/;
-
-const validateISBN = isbn => isbnRegEx.test(isbn) && !books.some(book => book.isbn === isbn);
-
 
 let entry = event => {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const isbn = document.getElementById('isbn').value;
     
-    if (title !== '' && author !== '' && isbn !== '' && title.length < 255 && author.length < 255 && validateISBN(isbn)) {
+    if (title !== '' && author !== '' && isbn !== '' && title.length <= 255 && author.length <= 255 && validateISBN(isbn)) {
             event.preventDefault();
-    
+
             let book = new Book(title, author, isbn);
             books.push(book);
             localStorage.setItem('books', JSON.stringify(books));

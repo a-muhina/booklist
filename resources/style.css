@@ -179,6 +179,10 @@ input.editing {
     padding: 10px 20px;
 }
 
+input.invalid {
+    border: 2px solid red;
+}
+
 tr td.noresult {
     background-color:#EBE7E1;
     text-align: center;
